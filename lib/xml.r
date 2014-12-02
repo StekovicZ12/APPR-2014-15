@@ -10,8 +10,8 @@ stripByPath <- function(x, path) {
 }
 
 uvozi.poregijah <- function() {
-  url.poregijah <- "http://pxweb.stat.si/pxweb/Dialog/Saveshow.asp"
-  doc.poregijah <- htmlTreeParse(url.poregijah, useInternalNodes=TRUE)
+  url.poregijah <- "podatki/poregijah2.htm"
+  doc.poregijah <- htmlTreeParse(url.poregijah, useInternalNodes=TRUE, encoding="Windows-1250")
   
   # Poiščemo vse tabele v dokumentu
   tabele <- getNodeSet(doc.poregijah, "//table")
@@ -22,17 +22,15 @@ uvozi.poregijah <- function() {
   
   # Seznam vrstic pretvorimo v seznam (znakovnih) vektorjev
   # s porezanimi vsebinami celic (<td>) neposredno pod trenutnim vozliščem
-  seznam <- lapply(vrstice[2:length(vrstice)], stripByPath, "./td")
+  seznam <- lapply(vrstice[5:length(vrstice)-1], stripByPath, "./td")
   
   # Iz seznama vrstic naredimo matriko
   matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE)
   
   # Imena stolpcev matrike dobimo iz celic (<th>) glave (prve vrstice) prve tabele
-  colnames(matrika) <- gsub("\n", " ", stripByPath(tabele[[2]][[1]], ".//th"))
+  colnames(matrika) <- gsub("\n", " ", paste(stripByPath(vrstice[[3]], ".//th")[-1], c(rep(2011, 3), rep(2012, 3), rep(2013, 3))))
   
   # Podatke iz matrike spravimo v razpredelnico
-  return(data.frame(apply(gsub("\\*", "",
-                          gsub(",", ".",
-                          gsub("\\.", "", matrika[,2:5]))),
-                    2, as.numeric), row.names=matrika[,1]))
+  imena <- unlist(lapply(vrstice[5:length(vrstice)-1], stripByPath, "./th"))[c(-1,-2)]
+  return(data.frame(apply(matrika, 2, as.numeric), row.names=imena))
 }
