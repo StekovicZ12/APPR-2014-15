@@ -6,7 +6,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 
 ## Tematika
 
-# Izobrazba v Sloveniji
+### Izobrazba v Sloveniji
 
 Vsi vemo, da se vse več ljudi odloča za študij, v primerjavi z nekaj let nazaj. Zato sem se odločila analizirati koliko slovenk in slovencev ima visokošolsko izobrazbo 1., 2., 3. stopnje med leti 2011 in 2013 in kako se ta spreminja.
 

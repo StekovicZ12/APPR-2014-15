@@ -1,10 +1,13 @@
 # 2. faza: Obdelava, uvoz in čiščenje podatkov
 source("uvoz/uvoz.r")
+source("uvoz/uvoz2.r")
 
-# 3. faza: Analiza in vizualizacija podatkov
-source("vizualizacija/vizualizacija.r")
+izobrazba.slovenije
 
-# 4. faza: Napredna analiza podatkov
-source("analiza/analiza.r")
+# # 3. faza: Analiza in vizualizacija podatkov
+# source("vizualizacija/vizualizacija.r")
+# 
+# # 4. faza: Napredna analiza podatkov
+# source("analiza/analiza.r")
 
 cat("Končano.\n")

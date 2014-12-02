@@ -1,16 +1,16 @@
 # 2. faza: Uvoz podatkov
 
-# Funkcija, ki uvozi podatke iz datoteke druzine.csv
-uvoziDruzine <- function() {
-  return(read.table("podatki/druzine.csv", sep = ";", as.is = TRUE,
-                      row.names = 1,
-                      col.names = c("obcina", "en", "dva", "tri", "stiri"),
+#1.tabela
+# Funkcija, ki uvozi podatke iz datoteke izobrazba-slovenije.csv
+uvoziIzobrazbaSlovenije <- function() {
+  return(read.table("podatki/izobrazba-slovenije.csv", sep = ";", as.is = TRUE, col.names = c("STOPNJA", "2011", "2012", "2013"),
                       fileEncoding = "Windows-1250"))
 }
 
-# Zapišimo podatke v razpredelnico druzine.
-cat("Uvažam podatke o družinah...\n")
-druzine <- uvoziDruzine()
+cat("Uvažam podatke o izobrazbi slovenije..\n")
+izobrazba.slovenije <- uvoziIzobrazbaSlovenije()
+
+
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
