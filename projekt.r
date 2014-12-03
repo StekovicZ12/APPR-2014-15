@@ -2,7 +2,7 @@
 source("uvoz/uvoz.r") #1.tabela
 source("uvoz/uvoz2.R") #2.tabela
 
-source("uvoz/uvoz3.R") #graf
+source("uvoz/uvoz3.R") #xml
 
 # # 3. faza: Analiza in vizualizacija podatkov
 # source("vizualizacija/vizualizacija.r")
