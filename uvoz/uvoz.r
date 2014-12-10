@@ -3,7 +3,7 @@
 #1.tabela
 # Funkcija, ki uvozi podatke iz datoteke izobrazba-slovenije.csv
 uvoziIzobrazbaSlovenije <- function() {
-  return(read.table("podatki/izobrazba-slovenije.csv", sep = ";", as.is = TRUE, col.names = c("STOPNJA", "2011", "2012", "2013"),
+  return(read.table("podatki/izobrazba-slovenije.csv", sep = ";", as.is = TRUE,row.names = 1, col.names = c("STOPNJA", "2011", "2012", "2013"),
                       fileEncoding = "Windows-1250"))
 }
 
