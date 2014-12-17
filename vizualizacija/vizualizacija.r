@@ -5,42 +5,31 @@ source("lib/uvozi.zemljevid.r")
 
 # Uvozimo zemljevid.
 cat("Uvažam zemljevid...\n")
-obcine <- uvozi.zemljevid("http://e-prostor.gov.si/fileadmin/BREZPLACNI_POD/RPE/OB.zip",
-                          "obcine", "OB/OB.shp", mapa = "zemljevid",
+regije <- uvozi.zemljevid("http://www.stat.si/doc/Geo/Statisticne_regije_NUTS3.zip",
+                          "regije", "Statisticne_regije.shp", mapa = "zemljevid",
                           encoding = "Windows-1250")
 
 # Funkcija, ki podatke preuredi glede na vrstni red v zemljevidu
 preuredi <- function(podatki, zemljevid) {
-  nove.obcine <- c()
-  manjkajo <- ! nove.obcine %in% rownames(podatki)
-  M <- as.data.frame(matrix(nrow=sum(manjkajo), ncol=length(podatki)))
-  names(M) <- names(podatki)
-  row.names(M) <- nove.obcine[manjkajo]
-  podatki <- rbind(podatki, M)
-  
-  out <- data.frame(podatki[order(rownames(podatki)), ])[rank(levels(zemljevid$OB_UIME)[rank(zemljevid$OB_UIME)]), ]
-  if (ncol(podatki) == 1) {
-    out <- data.frame(out)
-    names(out) <- names(podatki)
-    rownames(out) <- rownames(podatki)
-  }
-  return(out)
+  return(data.frame(podatki[order(rownames(podatki)), ])[rank(levels(zemljevid$IME)[rank(zemljevid$IME)]), ])
 }
 
 # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
-druzine <- preuredi(druzine, obcine)
+poRegijah <- preuredi(poRegijah, regije)
 
 # Izračunamo povprečno velikost družine.
-druzine$povprecje <- apply(druzine[1:4], 1, function(x) sum(x*(1:4))/sum(x))
-min.povprecje <- min(druzine$povprecje, na.rm=TRUE)
-max.povprecje <- max(druzine$povprecje, na.rm=TRUE)
+min.2013 <- min(poRegijah[7], na.rm=TRUE)
+max.2013 <- max(poRegijah[7], na.rm=TRUE)
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid...\n")
 pdf("slike/povprecna_druzina.pdf", width=6, height=4)
 
 n = 100
-barve = topo.colors(n)[1+(n-1)*(druzine$povprecje-min.povprecje)/(max.povprecje-min.povprecje)]
-plot(obcine, col = barve)
+barve <- topo.colors(n)[1+(n-1)*(poRegijah[,7]-min.2013)/(max.2013-min.2013)]
+plot(regije, col = barve)
+
+regije$x2013 <- poRegijah[,7]
+spplot(regije, "x2013", col = topo.colors(100))
 
 dev.off()
