@@ -17,13 +17,12 @@ preuredi <- function(podatki, zemljevid) {
 # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 poRegijah <- preuredi(poRegijah, regije)
 
-# Izračunamo povprečno velikost družine.
 min.2013 <- min(poRegijah[7], na.rm=TRUE)
 max.2013 <- max(poRegijah[7], na.rm=TRUE)
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid...\n")
-pdf("slike/povprecna_druzina.pdf", width=6, height=4)
+pdf("slike/zemljevid_regije.pdf", width=6, height=4)
 
 n = 100
 barve <- topo.colors(n)[1+(n-1)*(poRegijah[,7]-min.2013)/(max.2013-min.2013)]

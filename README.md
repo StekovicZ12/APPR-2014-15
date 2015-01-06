@@ -17,8 +17,9 @@ Cilj : Predstaviti izobrazbo moških in žensk po regijah in kako se ta spreminj
 Podatke bom uvozila iz spletne strani STATISTIČNEGA URADA REPUBLIKE SLOVENIJE : http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=05G2010S&ti=&path=../Database/Dem_soc/05_prebivalstvo/20_soc_ekon_preb/01_05G20_izobrazba/&lang=2 ; podatke na tej strani lahko zbiram med oblikami : .html, .csv, .txt, .xls. ... 
 
 
+##Uporaba
 
-
+Ko poženemo glavni program z imenom `projekt.r` se nam izpišeta dve tabeli teh dva grafa, ki sta shranjena v mapi `slike/`. V mapi `vizualizacija/` pa je napisan program `vizualizacija.r` ki izvede in nariše zemljevid Slovenije po regijah. Slika zemljevida pa se shrani v mapo `slike/` pod imenom `zemljevid_regije.pdf`.
 
 ## Program
 
