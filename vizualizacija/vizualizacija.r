@@ -24,11 +24,11 @@ max.2013 <- max(poRegijah[7], na.rm=TRUE)
 cat("Rišem zemljevid...\n")
 pdf("slike/zemljevid_regije.pdf", width=6, height=4)
 
-n = 100
-barve <- topo.colors(n)[1+(n-1)*(poRegijah[,7]-min.2013)/(max.2013-min.2013)]
-plot(regije, col = barve)
+# n = 100
+# barve <- topo.colors(n)[1+(n-1)*(poRegijah[,7]-min.2013)/(max.2013-min.2013)]
+# plot(regije, col = barve)
 
 regije$x2013 <- poRegijah[,7]
-spplot(regije, "x2013", col = topo.colors(100))
-
+print(spplot(regije, "x2013", col = topo.colors(100), main = "Visokošolska izobrazba 1. stopnje za leto 2013",
+             sp.layout = list(list("sp.text", coordinates(regije), regije$IME, cex = 0.4))))
 dev.off()
