@@ -1,17 +1,15 @@
 # 4. faza: Analiza podatkov
+pdf("slike/analiza.pdf")
+leta <- 2007:2011
+stolpci <- paste0("X", leta)
+# plot(sum.druga[stolpci], izdatki[stolpci])
 
-# Uvozimo funkcijo za uvoz spletne strani.
-source("lib/xml.r")
-
-# Preberemo spletno stran v razpredelnico.
-cat("Uvažam spletno stran...\n")
-tabela <- preuredi(uvozi.obcine(), obcine)
-
-# Narišemo graf v datoteko PDF.
-cat("Rišem graf...\n")
-pdf("slike/naselja.pdf", width=6, height=4)
-plot(tabela[[1]], tabela[[4]],
-     main = "Število naselij glede na površino občine",
-     xlab = "Površina (km^2)",
-     ylab = "Št. naselij")
+library(plotrix)
+twoord.plot(leta, sum.prva[stolpci], leta, izdatki[stolpci])
+legend("bottomright",
+       legend = c("izdatki za tercialno izobraževanje", "1.stopnja(univerzitetno,strokovno,prejšnje)"),
+       col = c("red","black"),
+       lty = c("solid", "solid"),
+       pch = c(2,1),
+       bg = "white")
 dev.off()

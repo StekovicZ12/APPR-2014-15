@@ -16,6 +16,7 @@ preuredi <- function(podatki, zemljevid) {
 
 # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 poRegijah <- preuredi(poRegijah, regije)
+prebivalstvo <- preuredi(prebivalstvo, regije)
 
 min.2013 <- min(poRegijah[7], na.rm=TRUE)
 max.2013 <- max(poRegijah[7], na.rm=TRUE)
@@ -29,7 +30,7 @@ pdf("slike/zemljevid_regije.pdf", width=6, height=4)
 # plot(regije, col = barve)
 popravek.koordinat <- c(0,0,0,0,0,0,-4000,0,0,0,0,0,0,0,0,0,0,3000,-3000,0,0,0,0,-7000)
 
-regije$x2013 <- poRegijah[,7]
+regije$x2013 <- poRegijah[,7]/prebivalstvo[,"X2013"]
 print(spplot(regije, "x2013", col = topo.colors(100), main = "Visokošolska izobrazba 1. stopnje za leto 2013",
              sp.layout = list(list("sp.text", coordinates(regije) + popravek.koordinat, regije$IME, cex = 0.4))))
 dev.off()
