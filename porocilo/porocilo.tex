@@ -7,33 +7,125 @@
 \pagestyle{plain}
 
 \begin{document}
-\title{Poročilo pri predmetu \\
-Analiza podatkov s programom R}
-\author{Žana Štekovič}
-\maketitle
+\begin{titlepage} 
+
+ 
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+
+ 
+\center 
+
+ 
+ \textsc{\LARGE Fakulteta za matematiko in fiziko}\\[1.5cm] 
+ \textsc{\Large Poročilo pri predmetu}\\[0.5cm] 
+ \textsc{\large Analiza podatkov s programom R}\\[0.5cm] 
+ \HRule \\[0.4cm] 
+ { \huge \bfseries Izobrazba Slovenije}\\[0.4cm]  
+ \HRule \\[1.5cm]  
+ 
+ 
+ 
+\begin{minipage}{0.4\textwidth} 
+\begin{flushleft} \large 
+\emph{Avtor:}\\ 
+Žana \textsc{Štekovič} 
+\end{flushleft} 
+\end{minipage} 
+~ 
+\begin{minipage}{0.4\textwidth} 
+\begin{flushright} \large 
+\emph{Mentor:} \\ 
+Janoš \textsc{Vidali} 
+\end{flushright} 
+\end{minipage}\\[4cm] 
+ 
+ 
+{\large \today}\\[3cm]  
+\vfill 
+ 
+ 
+\end{titlepage} 
+
+%\title{Poročilo pri predmetu \\
+%Analiza podatkov s programom R}
+%\author{Žana Štekovič}
+%\maketitle
 
 \section{Izbira teme}
 Temo sem si izbrala na podlagi trenutnih situacij. Predvsem kaj bi me zanimalo in bi z veseljem raziskovala o tem.
-Tema je IZOBRAZBA SLOVENIJE.
+Tema je IZOBRAZBA SLOVENIJE. 
 
 \section{Obdelava, uvoz in čiščenje podatkov}
-Sama obdelava podatkov je izgledala tako, da sem iz spletne strani podatke shranila v csv obliki, potem pa sem vse nepotrebne podatke zbrisala, saj jih nisem hotela v tabeli.
-Obločila sem se za dve tabeli. Prva se nanaša na celo Slovenijo, in sicer je primerjava moških in žensk pri treh različnih izobrazbah in treh letih.
-Druga tabela pa se deli na regije, pri tem da sta spola moški in ženske združena, saj me bo zanimalo v nadaljnem, v katerih koncih sloveniji je stopnja izobrazbe najvišja, in kako se ta z leti spreminja.
-V datoteki za uvoz sem naredila dve funkciji, vsaka za eno tabelo.Prvo tabelo sem uvozila v csv obliki, drugo tabelo pa v html obliki. Iz druge tabele sem vzela podatke za leto 2011, 1. stopnja izobrazbe in naredila graf za vse regije, in pa za leto 2013, 1. stopnja izobrazbe za vse regije. Ker so te razlike načeloma ne tako zelo velike razlika med grafoma ni očitna.
-V nadaljnih fazah bom naredila primerjavo tudi na drugačen način, kjer bo vidno, da se iz leta v leto viša.  Iz spletne strani sem uvozila tudi podatke v html obliki. V datoteki \verb|xml.r| je funkcija \verb|uvozi.poregijah|. V \verb|uvoz3.R| pa sem definirala novo funkcijo, katera se sklicuje na \verb|uvozi.poregijah|. To sem naredila zato, da je v glavnem programu vse urejeno in da ni preveč podatkov.
+Po izbiri teme je na vrsto prišlo zbiranje podatkov. Te sem zbrala v mapi \verb|podatki|. Podatke sem dobila iz spletne strani \verb|SURS-a|. Iz tam sem uvozila dve tabeli. Eno sem uvozila v csv obliki, drugo pa v html obliki. Prvo tabelco, ki predstavlja primerjavo med moškimi in ženskami, sem preuredila, saj je vsebovala ogromno nepotrebnih podatkov. Pri drugi, kjer imamo podatke za vsako regijo posebaj, kjer sta spola združena, pa sem spoznala uvoz v programu R preko \verb|xml| oblike. V datoteki \verb|xml.r| je funkcija \verb|uvozi.poregijah|. V \verb|uvoz3.R| pa sem definirala novo funkcijo, katera se sklicuje na \verb|uvozi.poregijah|. To sem naredila zato, da je v glavnem programu vse urejeno in da ni preveč podatkov. V tabelcah imamo imenske spremenjivke - to so stopnje izobrazbe(1.stopnja, 2.stopnja, 3.stopnja), teh številske spremenljivke - leta(2011,2012,2013).Iz teh uvoženih tabel sem naredila dva tortna grafa. Za prvi graf sem iz druge tabele vzela podatke za leto 2011 za 1. stopnjo izobrazbe, za drugi graf pa prav tako podatke iz druge tabelce vendar za leto 2013, 1. stopnja izobrazbe. Cilj ej bil primerjati regije kako se z leti spreminja število "ŠTUDENTOV", vendar to iz grafa ni toliko razvidno, saj gre za grafično prikazano majhne spremembe, številčno pa večje spremembe.
 
 \includegraphics[width=\textwidth]{../slike/leto_2011.pdf}
 \includegraphics[width=\textwidth]{../slike/leto_2013.pdf}
 
-\section{Analiza in vizualizacija podatkov}
-V tej fazi sem narisala zemljevid in ga shranila v pdf obliko. Funkcija, ki izriše zemljediv je shranjena v datoteki \verb|vizualizacija\vizualizacija.r|. Z zemljevidom sem želela prikazati primerjavo po regijah koliko ljudi ima visokošolsko izobrazbo 1. stopnje v vsaki regiji. Prikazane števila so že deljena s številom prebivalcev na vsako regijo posebej, tako da se vidi lepo, da je največ ljudi z 1. stopnjo izobrazbe prav v Osrednji sloveniji in takoj za njo v Obalno- kraški regiji. Sledijo pa jim tudi Gorenjska in Notranjsko-kraška regija. Tukaj je dobro razvidno v katerih predelih slovenije ljudje dajo veliko več na izobrazbo kot drugot. Izjemno presenetljiva je Pomurska ki ima izredno malo taki ljudi. Sama osebno bi tudi Podravski pripisala več ljudi z tako izobrazbo glede na to da je Maribor kot največje mesto re regije drugo največje mesto v Sloveniji in v njem je veliko fakultet.  Zraven pa se tudi legenda v kateri je razvidno še številčno koliko je ljudi.
+\pagebreak
 
-\includegraphics{../slike/zemljevid_regije.pdf}
+\section{Analiza in vizualizacija podatkov}
+Za analizo in vizualizacijo podatkov sem sprva vpeljala zemljevid slovenije razdeljeno na regije- \verb|regije|.  V datoteki \verb|vizualizacija\vizualizacija.r|, je shranjena funkcija, ki izriše zemljevid. Sprva sem narisala zemljevid, katerega podatki niso bili deljeni s številom prebivalcev, tako da iz narisanega grafa nisi kaj dosti razbral. Videlo se je da je seveda študentov v Osrednji sloveniji največ, vendar ni bilo upoštevano, da je tudi prebivalcev največ. Tako da sem to popravila tako, da sem podatke- torej število ljudi z 1. stopnjo izobrazbe po regijah delila s številom prebivalcev. Za to je bilo potrebno uvoziti nove podatke-število prebivalcev razdeljeno po regijah. Te sem prav tako dobila iz spletne strani \verb|STAT|. Uvozila sem jih v csv obliki, kjer pa je bilo spret potrebnih nekaj popravkov- transponiranje in še kaj.Z zemljevidom sem hotela prikazati primerjavo po regijah, koliko ljudi ima 1. stopnjo izobrazbe, oz. kje jih je največ in najmanj. To nam veliko pove o tem koliko v kateri regiji ljudem pomeni imeti visoko izobrazbo.
+
+\makebox[\textwidth][c]{ 
+ 
+\includegraphics{../slike/zemljevid_regije.pdf}.
+ 
+ } 
+
+Iz zgornjega zemljevida je dobro razvidno, da je Osrednja- Slovenija med vodilnimi o številu ljudi z visokošolsko 1. stopnjo izobrazbe glede na število prebivalcev, tik za njo pa je Obalno-kraška regija kjer je to število tudi izredno veliko. Sledita jima Gorenjska in Notranjsko- kraška regija. Lepo je razvidno v katerih predelih Slovenije pomeni izobrazba več kot drugot. Izjemno presenetljiv je podatek da ima Pomurska izrednjo malo takih ljudi, pa čeprav je Maribor, ki je drugo največje mesto Slovenije, prestolnica z veliko fakultetami. Zraven je prikazana tudi legenda s katero se približno lahko orientirate o kakšnih številkah govorimo. Če pa te števila množimo s 100 pa dobimo koliko je to ljudi v procentih.
+
 
 \section{Napredna analiza podatkov}
 
+\begin{enumerate} 
+\item{PRIMERJAVA; Moški in Ženske} : V prvih fazah prve tabele, torej primerjave med moškimi in ženskami, nisem nič uporabila. Zato sem se to lotila v 4. fazi, saj se mi ta primerjava zdi zelo zanimiva. Torej zanima nas za vsako stopnjo posebaj katerih po spolu ločenih ljudi je več, moških ali žensk. Graf sem shranila v mapo \verb|uvoz| in sicer pod imenom \verb|graf.R|. V tej datoteki nam programček shrani narisan graf v datoteko \verb|slike| pod imenom \verb|primerjava-moski-zenske|. Podatke pa sem vzela iz tabele \verb|izobrazba.slovenije|.
+
+
+\makebox[\textwidth][c]{ 
+ 
 \includegraphics[width=\textwidth]{../slike/primerjava-moski-zenske.pdf}
+ 
+ } 
+\begin{enumerate} 
+\item{RAZLAGA ZGORNJEGA GRAFA} :  Na grafu imamo 6 "krivulj", ki povezujejo med sabo leta. \verb|RDEČA| "krivulja" prikazuje Visokošolska izobrazba 1.stopnje ipd., \verb|ZELENA| "krivulja" prikazuje Visokošolko izobrazbo 2. stopnje ipd. in \verb|ORANŽNA| prikazuje Visokošolsko izobrazbo 3. stopnje ipd. V grafu nastopata dva simbola. Prvi simbol \verb|KROGEC| predstavlja moški del, in \verb|ZVEZDICA| predstavlja ženski del. Najprej si poglejmo \verb|1. stopnjo izobrazbe| -- Vidimo da med "študenti" več kot za 1/4 več deklet kot fantov. Kot vidimo je število moških in žensk skozi leta bolj kot ne konstantno. Sprememba iz 2011 v 2012 je skoraj ničelna, iz leta 2012 v 2013 pa je v pozitivni smeri pri ženskah malenkost večja kot pri moških. Krivulji \verb|2.stopnje izobrazbe| se kar v nekaj stvareh razlikujeta od 1. stopnje. Vidimo, da je število žensk spet večje od števila moških. Torej tudi "magistrantov" je več punc kot fantov oz. povedano drugače; več deklet se odloči za študij magiterija kot fantov. Razlika je spet skoraj 1/4. Vendar pri tej stopnji vidimo \verb|porast| ženskih in moških magistrantov iz leta 2011 v leto 2012. Naklon te premice med leti 2011 in 2012 je veliko večji kot pri premici za 1. stopnjo,kjer je kot smo že prej omenili skoraj ničeln. Iz leta 2012 v leto 2013 pa je število skoraj isto, oz je "funkcija" skoraj konstantna. Pri \verb|3.stopnji| izobrazbe pa se vlogi moških in žensk zamenjata. Torej med ljudmi, kateri se odločijo za doktorski študij je, več fantov kot žensk. Razlika sicer ni tako velika kot pri nižjih stopnjah ampak je še vedno opazna. Torej tokrat prevladujejo moški. Premici med leti sta bolj ko ne ravni, torej se število skozi leta ne spreminja veliko. Na grafu opazimo tudi da je ljudi, ki se odločijo za doktorski študij veliko manj kot ljudi, ki se odločijo za podiplomski ali dodiplomski študij. V prihodnjosti mislim, da bo ta številka še vedno ostala podobna ostalim letom. Menim pa da se bo v prihodnjih letih povečalo število študentov magistrskega študija, predvsem iz tega razloga, ker v takem stanju kot smo, da je prostih delovnih mest vedno manj, ljudje po končani diplomi ne bodo dobili službe, zato se bo večina študentov vedno več odločala za študij magisterija in kasneje mogoče tudi doktorskega. 1.stopnjo izobrazbe pa mislim, da bo imel prav vsak. Medtem ko včasih se je za študij odločilo veliko manj ljudi kot danes, saj so tudi z gimnazijo dobili službo, danes pa z gimnazijo nisi praktično nič.
+
+\end{enumerate}
+
+
+
+\pagebreak
+
+\item{PRIMERJAVA; 1.stopnja med leti 2007-2012 in izdatki za formalno izobraževanje} : Za naslednjo analizo sem potrebovala kar nekaj novih podatkov. Na \verb|SURS-u| sem poiskala podatke za število študentov 1.stopnje in 2.stopnje od leta 2007 naprej in pa podatke o izdatkih za formalno izobraževanje. Oboje sem uvozila v csv obliki in jih shranila v mapo \verb|podatki|, pod imenom \verb|prva-stopnja.csv| in \verb|druga-stopnja.csv| in pa izdatke pod imenom \verb|izdatki.csv|. V mapi \verb|uvoz| sem naredila programe \verb|prva-stopnja.R|, \verb|druga-stopnja.R| in \verb|izdatki.R|, ki izpišejo tabele \verb|prva.stopnja|,\verb|druga.stopnja| in \verb|izdatki|. V prvi tabelci je združeno visokošolsko strokovno izobraževanje(prejšnje), 1.bolonjska stopnja( strokovno in univerzitetno). V drugi tabelci pa visokošolsko univerziterno(prejšnje), magistrsko(enovito, po končani 1.bolonjski stopnji). Ker so leta 200)/2010 uvedli bolonjski študij, sem na internetu pogledala kako so razvrščene stopnje zdaj ( katera je koliko vredna), zato da sem vedla katere dati v isti koš. Čeprav kakor so grafi pokazali visokošolsko univerzitetno( prejšnje) ne bi smela šteti niti k eni niti k drugi, ampak bi jih načeloma morala razpoloviti, da bi graf pokazal resnične rezultate. Odločila sem se da na enem grafu hkrati združim dva grafa in jih med sabo primerjam. V mapi \verb|analiza| je datoteka \verb|analiza.r| v kateri je napisan programček, ki nam v mapo \verb|slike| shrani narisan graf pod imenom \verb|analiza.pdf|. 
+
+
+
+\makebox[\textwidth][c]{ 
+ 
 \includegraphics[width=\textwidth]{../slike/analiza.pdf}
+ 
+ } 
+
+\begin{enumerate}
+\item{RAZLAGA ZGORNJEGA GRAFA} : Graf sem narisala s pomočjo funkcije \verb|twoord.plot|, ki združi dva grafa v enega. Torej graf ima dve "krivulji", ki sta sestavljeni iz točk in premic, ki povezujejo te točke. Rdeča krivulja predstavlja izdatkovno krivuljo skozi leta, črna krivulja pa predstavlja število ljudi z 1. stopnjo izobrazbe skozi leta, pri čemer je upoštevano, kot že prej povedano, visokošolsko strokovno(prejšnje), visokošolsko strokovno(1. bolonjska stopnja) in visokošoljsko univerzitetno ( 1.bolonjska stopnja). Pri izdatkih sem izbrala izdatke za tercialno izobraževanje, karkršni so tudi naši podatki. Podatki za izdatke so tudi za leto 2012 vendar je kot navajajo na Stat-u prišlo do spremembe pri mednarodni definiciji formalnega izobraževanja in se je začelo nakaj drugač šteti,zato sem se odločila da leto 2012 izpustim. Na grafu se je za leto 2012 poznalo to tako da je krivulja za izdatke padla skoraj čisto na dno grafa, krivulja za število študentov pa je bila očutno veliko nad izdatkovno krivuljo, torej koleracije med njima ni nikakršne. Če si pogledamo najprej \verb|črno| krivuljo, ki prikazuje spremembo števila študentov med leti -- Tukaj lahko dobro vidimo kako se število študentov drastično povečuje, oz se je povečala. Leta 2007 je bilo število študentov relativno "malo", do leta 2009 pa je ta številka enormno rastla, torej lahko rečemo da je od takrat nek prelom za slovensko izobraževanje. Od leta 2009 do danes pa se številka ni drastično spremenila. Vse kar vidimo je nekaj malega nihanja, drugače pa brez sprememb. Vrh doseže leta 2011. Poglejmo si še drugo \verb|rdečo| krivuljo, torej \verb|izdatkovno krivuljo| -- Ta krivulja je na las podobna črni krivulji. Torej leta 2007 so izdatki najmanjši, ki pa skozi leta naraščajo. Iz leta 2009 na 2010 doživijo rahli padec ( verjetno zaradi uvedbe bolonjskega študija), potem pa spet narastejo.  Iz grafa vidimo očitno korelacijo med izdatki, ki jih izda država za tercialno izobraževanje in pa med številom študentov, ki se odločijo za dodiplomski študij(bolonjski študij) oz po starem za visokošolski strokovni študij. 
+
+
+\pagebreak
+
+\item{RAZLAGA GRAFA}:
+
+\makebox[\textwidth][c]{ 
+ 
+\includegraphics[width=\textwidth]{../slike/analiza2.pdf}
+ 
+ } 
+ Pri tem grafu pa sem združila 2. stopnjo izobraževanja in izdatkovno krivuljo. Pri tabelici \verb|druga.stopnja| sem za ta graf vzela samo drugo in tretjo vrstico, saj kot sem že prej omenila visokošolsko univerzitetno prejšnje samo pokvari, ker v realnosti ni iznačeno z današnjim magistrskim, zato pokvari graf oz. številke. Pri tem grafu vidimo, da je koleracija med izdatkovno krivuljo in krivuljo magistrantov malo manjša, kot pri diplomantih. Verjetno zato ker država za te vrste študija ne prispeva toliko da bi to vplivalo na odločanje študenta ali iti študirati na podiplomski študij ali ne. \verb|Črna krivulja| zopet prikazuje število ljudi z 2. stopnjo izobrazbe, ki pa je v primerjavi z 1. stopnjo veliko bolj naraščajoča, in to skozi vsa leta. Kakor kaže krivulja lahko napovemo tudi za prihodnje da se bo to število še povečevalo. V tem grafu pa sem vlučila tudi leto 2012, da vidite o čem sem prej govorila. Izdatkovna krivulja je pa pri tem grafu ista kot pri prvem.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\section{Zaključek}
+
+V prihodnje lahko pričakujemo, da se bo še vedno povečevalo število ljudi z 2.stopnjo izobrazbe in prav tako s 1. stopnjo. Lahko rečem tako, da bo 1.stopnja izobrazbe postala to kar je bila včasih gimnazija in jo boš moral meti, drugače boš težko našel šlužbo. 2. stopnja bo pa kot je učasih bila 1. stopnja, torej se bo vse zamaknilo za eno stopnjo. To se dejansko že dogaja, vendar se vse samo še povečuje. Vedno več bo tudi ljudi z doktoratom. Vse se spreminja, dolgo se bo študiralo in pozno si bomo lahko ustvarili dom, družino ipd. Mislim, da bo moralo slej kot prej priti do sprememb saj se taki grafi kot sem jih prikazala in napovedala ne morajo nadaljevati v nedogled. \verb|Mislimo pozitivno in se posvetimo študiju!|
 
 \end{document}

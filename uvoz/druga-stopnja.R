@@ -5,4 +5,4 @@ uvoziDrugastopnja <- function() {
 
 cat("Uvažam podatke o drugi stopnji..\n")
 druga.stopnja <- uvoziDrugastopnja()
-sum.druga <- apply(druga.stopnja, 2, sum)
+sum.druga <- apply(druga.stopnja[c(2,3),], 2, sum)

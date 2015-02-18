@@ -19,5 +19,5 @@ source("uvoz/izdatki.R", encoding="UTF-8")
 #GRAFI
 source("uvoz/graf.R",encoding="UTF-8")
 source("analiza/analiza.r", encoding="UTF-8")
-
+source("analiza/analiza2.r", encoding="UTF-8")
 cat("Končano.\n")

@@ -2,7 +2,7 @@
 pdf("slike/analiza.pdf")
 leta <- 2007:2011
 stolpci <- paste0("X", leta)
-# plot(sum.druga[stolpci], izdatki[stolpci])
+# plot(sum.prva[stolpci], izdatki[stolpci])
 
 library(plotrix)
 twoord.plot(leta, sum.prva[stolpci], leta, izdatki[stolpci])
