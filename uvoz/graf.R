@@ -2,7 +2,7 @@ pdf("slike/primerjava-moski-zenske.pdf")
 letab <- 2011:2013
 leta <- range(letab)
 število.izobraženih <- range(izobrazba.slovenije)
-plot(leta, število.izobraženih, "n")
+plot(leta, število.izobraženih, "n", xaxp = c(2011, 2013, 2))
 bty = "c"
 barva <- rep(c("red", "green", "orange"), 2)
 simbol <- c(rep(1, 3), rep(8, 3))

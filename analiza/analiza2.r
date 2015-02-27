@@ -5,7 +5,7 @@ stolpci <- paste0("X", leta)
 
 
 library(plotrix)
-twoord.plot(leta, sum.druga[stolpci], leta, izdatki[stolpci])
+twoord.plot(leta, sum.druga[stolpci], leta, izdatki[stolpci],xlab="Leta", ylab="število študentov magisterija", rylab="Izdatki/€", main = "Število študentov magisterija skozi leta in izdatki za tercialno izobraževanje")
 legend("bottomright",
        legend = c("izdatki za tercialno izobraževanje", "2.stopnja"),
        col = c("red","black"),
